@@ -27,7 +27,7 @@ $messages = $db->messages; // messages collection
 $messageQuery = array('_id' => $messageId);
 $message = $messages->findone($messageQuery);
 */
-$post->updateTotalComments();
+// $post->updateTotalComments();
 ?>
 <html>
 <head>
