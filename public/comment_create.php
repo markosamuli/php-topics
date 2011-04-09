@@ -1,6 +1,6 @@
 <?php
 
-include("init.php");
+require "../init.php";
 
 if (isset($_POST['user'])) {
     $user = User::find($_POST['user']);

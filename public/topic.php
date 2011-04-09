@@ -1,6 +1,6 @@
 <?php
 
-include("init.php");
+require "../init.php";
 
 if (empty($_SESSION['user'])) {
     header("Location:login.php");

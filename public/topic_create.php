@@ -1,7 +1,7 @@
 <?php
 
 header('Content-type: text/html; charset=utf-8');
-include("init.php");
+require "../init.php";
 
 if (isset($_GET['rest']) || isset($_POST['rest'])) {
     $restful = true;

@@ -1,8 +1,7 @@
 <?php
 
 header('Content-type: text/html; charset=utf-8');
-
-include("init.php");
+require "../init.php";
 
 if (empty($_SESSION['user'])) {
     header("Location:login.php");
@@ -18,7 +17,7 @@ if (empty($_SESSION['user'])) {
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
 </head>
 <body>  
-    <?php include("header.php"); ?>
+    <?php include("../include/header.php"); ?>
     <div class="topics">
     <?php include("topic_form.php"); ?>
     <?php
