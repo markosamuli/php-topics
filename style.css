@@ -1,0 +1,174 @@
+body {
+  font:14px "Helvetica Neue",Arial,sans-serif;
+  xbackground:#FFDA73;  
+  background:#0772A1;
+}
+.navigation,
+.signup,
+.login,
+.header {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background:white;
+  padding:6px 0;
+  width:600px;
+  margin:0 0 6px 0;
+}
+.navigation {
+  overflow:hidden;
+}
+.navigation .user {
+  padding:0 6px;
+  float:left;
+}
+.navigation .logout {
+  padding:0 6px;
+  float:right;
+}
+.navigation a {
+  text-decoration:none;
+  color:#007730;
+}
+.header h1 {
+  margin:0 6px 6px 6px;
+  font-size:2em;
+  line-height:0.9em;
+}
+.header h2 {
+  margin:0 6px 6px 6px;
+  font-size:2em;
+  line-height:0.9em;
+}
+.header h2 a {
+  margin:0;
+  color:black;
+}
+.header .modified,
+.header .created {
+  margin:0 6px 0 6px;  
+  font-size:0.8em;
+  color:#777;
+}
+.header a {
+  margin:0 6px 0 6px;
+  text-decoration:none;
+  color:#007730;
+}
+.topics,
+.messages,
+.comments {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background:white;
+  padding:0 0 6px 0;
+  width:600px;
+}
+.comments {
+  padding:6px 0;
+}
+.message .comments {
+  margin:6px 0;
+  padding:0 3px;
+  width: 572px;
+  background-color:#eeeeee;
+}
+  form {
+    padding:10px 10px 0 10px;
+    margin:0 0 6px 0;
+    overflow:hidden;
+    display:block;
+  }
+  form label {
+    display:block;
+    margin:0;
+    padding:2px;
+    font-size:1.2em;
+    color:#024A68;
+    font-weight:bold;
+  }
+  form textarea {
+    background:white;
+    border: 1px solid #777;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px white;
+    -moz-box-shadow: 0 1px white;
+    box-shadow: 0 1px white;
+    outline:none;
+    font-size:1em;
+    padding:5px;
+    width:580px;
+  }
+  .message .comments form {
+    padding:4px;
+  }
+  .message .comments form textarea {
+    width:564px;
+  }
+  form input {
+    background:white;
+    border: 1px solid #777;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px white;
+    -moz-box-shadow: 0 1px white;
+    box-shadow: 0 1px white;
+    outline:none;
+    font-size:1em;
+    padding:5px;
+    width:580px;
+  }
+  form button {
+    float:right;
+    font-size:1em; 
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border:0;
+    color:white;
+    background:#3BA3D0;
+  }
+  .topic,
+  .message {
+    padding:6px;
+    margin:0;
+    border-top:1px solid #e7e7e7;
+  }
+  .comment {
+    padding:6px;
+    margin:0;
+    border-bottom:1px solid #e7e7e7;
+  }
+  .message .comments .more,
+  .message .comment {
+    padding:3px;
+    border-bottom:1px solid white;
+    overflow:hidden;
+  }
+  .message .comments .more {
+   text-align:right;
+   font-size:0.8em;
+  }
+  .message .comments .more a {
+    color:#024A68;
+    text-decoration:none;
+    
+  }
+  .comment p,
+  .message p {
+    font-size:1em;
+    line-height:1.1em;
+    margin:0;
+  }
+  .topic .info,
+  .comment .modified,
+  .message .modified,
+  .comment .created,
+  .message .created {
+    font-size:0.8em;
+    color:#777;
+  }
