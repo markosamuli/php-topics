@@ -82,9 +82,15 @@ if ($topic === null) {
         */
         ?>
         <?php foreach ($posts as $post) { ?>
-          <div class="message">
+          <div class="message" id="<?php echo $post->getId(); ?>">
+            <div class="post">
             <p><?php echo $post->message; ?></p>
-            <div class="created">Posted: <?php echo date("j.n.Y H:i:s", $post->created->sec); ?></div>
+            <div class="footer">
+            Posted 
+            <span class="created"><?php echo date("j.n.Y H:i:s", $post->created->sec); ?></span>
+            by <span class="author"><?php echo $post->user->name; ?></span>
+            </div>
+            </div>
             <div class="comments">
             <?php
             $limit = 5;
@@ -100,7 +106,7 @@ if ($topic === null) {
                <?php foreach ($comments as $comment) { ?>
                   <div class="comment">
                     <p><?php echo $comment->message; ?></p>
-                       <div class="created"><?php echo date("j.n.Y H:i:s", $comment->created->sec); ?></div>
+                    <div class="created"><?php echo date("j.n.Y H:i:s", $comment->created->sec); ?></div>
                   </div>
                <?php } ?>
             <?php 

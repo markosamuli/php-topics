@@ -19,14 +19,6 @@ if ($post === null) {
       exit;
 }
 
-/*
-include("mongo.php");
-$messageId =  new MongoId($_GET['id']);
-
-$messages = $db->messages; // messages collection
-$messageQuery = array('_id' => $messageId);
-$message = $messages->findone($messageQuery);
-*/
 // $post->updateTotalComments();
 ?>
 <html>

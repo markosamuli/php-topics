@@ -43,7 +43,8 @@ body {
 .topic a.title {
   font-size:2em;
   line-height:0.9em;
-  color:black;
+  /*color:black;*/
+  color:#DB0058;
   text-decoration:none;
   font-weight:bold;
 }
@@ -75,10 +76,57 @@ body {
 .comments {
   padding:6px 0;
 }
+.topic .posts {
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   margin:6px 0 0 0;
+   padding:6px;
+   background-color:#eeeeee;
+}
+.topic .posts .post {
+  overflow:hidden;
+}
+.topic .posts .post p {
+  margin:0;
+}
+
+.message .footer,
+.topic .posts .post .footer {
+  margin:3px 0 0 0;
+  padding:3px 0 0 0;
+  font-size:0.8em;
+  color:#777;
+}
+
+.topic .posts .post .footer {
+  border-top:1px solid #fff;
+}
+
+.message .post {
+  -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   margin:6px 0 0 0;
+   padding:6px;
+   background-color:#eeeeee;
+}
+
+.message .footer {
+  border-top:1px solid #ddd;
+}
+
+.post .footer .created,
+.post .footer .author,
+.message .footer .created,  
+.message .footer .author {
+  color:#555;
+}
+
 .message .comments {
   margin:6px 0;
   padding:0 3px;
-  width: 572px;
+  width: 580px;
   background-color:#eeeeee;
 }
   form {
@@ -171,11 +219,53 @@ body {
     line-height:1.1em;
     margin:0;
   }
-  .topic .info,
   .comment .modified,
-  .message .modified,
-  .comment .created,
-  .message .created {
-    font-size:0.8em;
+  .comment .created {
+    font-size:0.9em;
     color:#777;
   }
+  .topic .info {
+    margin-top:6px;
+    font-size:0.8em;
+  }
+  .topic .info span {
+    padding:2px 4px;
+    background:#6B9B00;
+    color:white;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  }
+  .topic .info span.counter {
+    background:#DB0058;
+  }
+  .topics .pagination {
+    padding:6px;
+    margin:0;
+    border-top:1px solid #e7e7e7;
+    overflow:hidden;
+    font-size:1.2em;
+    text-align:center;
+  }
+  .topics .pagination a {
+    color:white;
+    display:block;
+    text-decoration:none;
+    background:#024A68;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding:3px 6px;
+  }
+  /*
+  .topics .pagination span {
+    color:#777;
+  }
+  
+  .topics .pagination .prev {
+    float:left;
+  }
+  .topics .pagination .next {
+    float:right;
+  }
+  */
