@@ -1,0 +1,2 @@
+#!/bin/bash
+ab -n 1000 -c 10 -k -T 'application/x-www-form-urlencoded' -p topic.txt http://127.0.0.1:890/topics/topic_create.php?rest=1
