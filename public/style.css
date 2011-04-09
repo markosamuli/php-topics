@@ -40,6 +40,13 @@ body {
   font-size:2em;
   line-height:0.9em;
 }
+.topic a.title {
+  font-size:2em;
+  line-height:0.9em;
+  color:black;
+  text-decoration:none;
+  font-weight:bold;
+}
 .header h2 a {
   margin:0;
   color:black;

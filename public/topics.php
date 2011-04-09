@@ -40,14 +40,14 @@ if (empty($_SESSION['user'])) {
         $messages = null;
         ?>
         <div class="topic">
-        <a href="topic.php?id=<?php echo $topic->getId(); ?>"><?php echo $topic->title; ?></a>
-        <span class="counter"><?php echo $messages; ?></span>
-        <div class="info">
-            <span class="created">Created: <?php echo date('j.n.Y H:i:s', $topic->created->sec); ?></span>
-            <?php if ($topic->modified->sec > $topic->created->sec) { ?>
-            | <span class="modified">Last update: <?php echo date('j.n.Y H:i:s', $topic->modified->sec); ?></span>
-            <?php } ?>
-        </div>
+            <a class="title" href="topic.php?id=<?php echo $topic->getId(); ?>"><?php echo $topic->title; ?></a>
+            <span class="counter"><?php echo $messages; ?></span>
+            <div class="info">
+                <span class="created">Created: <?php echo date('j.n.Y H:i:s', $topic->created->sec); ?></span>
+                <?php if ($topic->modified->sec > $topic->created->sec) { ?>
+                | <span class="modified">Last update: <?php echo date('j.n.Y H:i:s', $topic->modified->sec); ?></span>
+                <?php } ?>
+            </div>
         </div>
         <?php } ?>
   </div>
