@@ -42,6 +42,7 @@ if (empty($_POST)) {
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
 </head>
 <body>  
+    <div class="header"><h1>Login</h1></div>
     <div class="login">
     <?php include("login_form.php"); ?>
     </div>
