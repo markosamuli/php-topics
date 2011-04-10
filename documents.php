@@ -142,7 +142,7 @@ class Topic extends Shanty_Mongo_Document
     public function deletePosts()
     {
         if ($this->user) {
-            $this->user->inc('totalPosts', -1);     
+            $this->user->inc('totalTopics', -1);     
             $this->user->save();
         }
         
