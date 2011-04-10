@@ -5,7 +5,7 @@
     <input type="text" name="title" id="title" />
   </div>
   <div>
-    <button type="submit">Create new topic</button>
+    <button type="submit">Here we go!</button>
   </div>
 </form>
 </div>

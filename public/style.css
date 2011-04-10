@@ -251,6 +251,10 @@ body {
     -moz-border-radius: 3px;
     border-radius: 3px;
   }
+  .topic .info span a {
+    color:white;
+    text-decoration:none;
+  }
   .topic .info span.counter {
     background:#DB0058;
   }

@@ -70,6 +70,7 @@ foreach ($topics as $topic) {
             <?php } elseif ($topic->totalPosts == 1) { ?>
                 <span class="counter">one post</span>
             <?php } ?>     
+            <span><a href="topic.php?id=<?php echo $topic->getId(); ?>">new post</a></span>
         </div>
         <?php 
         if ($topic->totalPosts > 0) { ?>
