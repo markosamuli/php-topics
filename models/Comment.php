@@ -15,6 +15,16 @@ class Comment extends StandardDocument
         'post' => array('Document:Post', 'Required', 'AsReference'),
     );
     
+    public function getMessage()
+    {
+        $message = $this->message; 
+        if (preg_match('/(http:\/\/[^\(\)\[\]\s"\']+)/', $message, $m)) {
+           $url = $m[1];
+           $message = str_replace($url, "<a href=\"$url\">$url</a>", $message);
+        }
+        return $message;
+    }
+    
     public function postDelete()
     {
         if ($this->post) {
