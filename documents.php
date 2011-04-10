@@ -86,30 +86,24 @@ class User extends Shanty_Mongo_Document
     public function updateTotalTopics()
     {
         $total = Topic::all($this->getReferenceQuery())->count();
-        self::update(
-            array(array('_id' => $this->getId()), '$atomic' => true), 
-            array('$set' => array('totalTopics' => $total))
-        );
+        $this->totalTopics = $total;
+        $this->save();
         return $total;
     }
     
     public function updateTotalPosts()
     {
         $total = Post::all($this->getReferenceQuery())->count();
-        self::update(
-            array(array('_id' => $this->getId()), '$atomic' => true), 
-            array('$set' => array('totalPosts' => $total))
-        );
+        $this->totalPosts = $total;
+        $this->save();
         return $total;
     }
     
     public function updateTotalComments()
     {
         $total = Comment::all($this->getReferenceQuery())->count();
-        self::update(
-            array(array('_id' => $this->getId()), '$atomic' => true), 
-            array('$set' => array('totalComments' => $total))
-        );
+        $this->totalComments = $total;
+        $this->save();
         return $total;
     }
     
