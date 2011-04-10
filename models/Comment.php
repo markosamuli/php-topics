@@ -1,10 +1,8 @@
 <?php
 
-require_once 'Shanty/Mongo.php';
-require_once 'Shanty/Mongo/Collection.php';
-require_once 'Shanty/Mongo/Document.php';
+require_once 'StandardDocument.php';
 
-class Comment extends Shanty_Mongo_Document
+class Comment extends StandardDocument
 {
     protected static $_db = 'topics';
     protected static $_collection = 'comment';
@@ -12,37 +10,10 @@ class Comment extends Shanty_Mongo_Document
     protected static $_requirements = array(
         'message' => 'Required',
         'created' => array('Required', 'Validator:MongoDate'),
+        'modified' => array('Validator:MongoDate'),
         'user' => array('Document:User', 'Required', 'AsReference'),
         'post' => array('Document:Post', 'Required', 'AsReference'),
     );
-    
-    public function init()
-    {
-        if ($this->created && $this->modified === null) {
-            $this->modified = $this->created;
-        }
-    }
-    
-    /**
-     * @return Zend_Date|null
-     */
-    public function getCreatedDate()
-    {
-        if ($this->created) {
-            return new Zend_Date($this->created->sec);
-        }
-    }
-    
-    public function preInsert()
-    {
-        $this->created = new MongoDate();
-        $this->modified = new MongoDate();
-    }
-    
-    public function preUpdate() 
-    {
-        $this->modified = new MongoDate();
-    }
     
     public function postDelete()
     {

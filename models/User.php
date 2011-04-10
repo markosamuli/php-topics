@@ -1,10 +1,8 @@
 <?php
 
-require_once 'Shanty/Mongo.php';
-require_once 'Shanty/Mongo/Collection.php';
-require_once 'Shanty/Mongo/Document.php';
+require_once 'StandardDocument.php';
 
-class User extends Shanty_Mongo_Document
+class User extends StandardDocument
 {
     protected static $_db = 'topics';
     protected static $_collection = 'user';
@@ -19,31 +17,6 @@ class User extends Shanty_Mongo_Document
         'modified' => array('Validator:MongoDate'),
         'secret' => array(),
     );
-    
-    public function getCreatedDate()
-    {
-        if ($this->created) {
-            return new Zend_Date($this->created->sec);
-        }
-    }
-    
-    public function getModifiedDate()
-    {
-        if ($this->modified) {
-            return new Zend_Date($this->modified->sec);
-        }
-    }
-    
-    public function preInsert()
-    {
-        $this->created = new MongoDate();
-        $this->modified = new MongoDate();
-    }
-    
-    public function preUpdate() 
-    {
-        $this->modified = new MongoDate();
-    }
     
     /**
      * @return array

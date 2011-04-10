@@ -1,62 +1,21 @@
 <?php
 
-require_once 'Shanty/Mongo.php';
-require_once 'Shanty/Mongo/Collection.php';
-require_once 'Shanty/Mongo/Document.php';
+require_once 'StandardDocument.php';
 
-class Post extends Shanty_Mongo_Document
+class Post extends StandardDocument
 {
     protected static $_db = 'topics';
     protected static $_collection = 'post';
     
     protected static $_requirements = array(
         'message' => 'Required',
-        'created' => array('Required', 'Validator:MongoDate'),       
-        'modified' => array('Validator:MongoDate'),               
+        'created' => array('Required'),            
         'user' => array('Document:User', 'Required', 'AsReference'),
         'topic' => array('Document:Topic', 'Required', 'AsReference'),  
         'comments' => 'DocumentSet',
         'comments.$' => array('Document:Comment', 'AsReference'),  
         'totalComments' => array(),    
     );
-    
-    public function init()
-    {
-        if ($this->created && $this->modified === null) {
-            $this->modified = $this->created;
-        }
-    } 
-    
-    /**
-     * @return Zend_Date|null
-     */
-    public function getCreatedDate()
-    {
-        if ($this->created) {
-            return new Zend_Date($this->created->sec);
-        }
-    }
-    
-    /**
-     * @return Zend_Date|null
-     */ 
-    public function getModifiedDate()
-    {
-        if ($this->modified) {
-            return new Zend_Date($this->modified->sec);
-        }
-    }
-    
-    public function preInsert()
-    {
-        $this->created = new MongoDate();
-        $this->modified = new MongoDate();
-    }
-    
-    public function preUpdate() 
-    {
-        $this->modified = new MongoDate();
-    }
     
     public function postInsert()
     {
