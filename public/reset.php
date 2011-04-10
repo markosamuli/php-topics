@@ -30,10 +30,6 @@ if (!empty($user)) {
     
     $start = microtime(true);
     $total = Comment::all($query)->count();
-    User::update(
-        array(array('_id' => $user->getId()), '$atomic' => true), 
-        array('$set' => array('totalComments' => $total))
-    );
     echo "Total comments: $total (" . runtime($start) .  "ms)\n";  
     if ($total > 0) {
         $comments = Comment::all($query)->limit(1000);
@@ -46,10 +42,6 @@ if (!empty($user)) {
     
     $start = microtime(true);
     $total = Post::all($query)->count();
-    User::update(
-        array(array('_id' => $user->getId()), '$atomic' => true), 
-        array('$set' => array('totalPosts' => $total))
-    );
     echo "Total posts: $total (" . runtime($start) .  "ms)\n";  
     if ($total > 0) {
         $posts = Post::all($query)->limit(1000);
@@ -62,10 +54,6 @@ if (!empty($user)) {
     
     $start = microtime(true);
     $total = Topic::all($query)->count();
-    User::update(
-        array(array('_id' => $user->getId()), '$atomic' => true), 
-        array('$set' => array('totalTopics' => $total))
-    );
     echo "Total topics: $total (" . runtime($start) .  "ms)\n";  
     if ($total > 0) {
         $topics = Topic::all($query)->limit(1000);
@@ -75,6 +63,10 @@ if (!empty($user)) {
             echo 'topic:' . $topic->getId() . " (" . runtime($start) .  "ms)\n";    
         }
     }
+    
+    $user->updateTotalTopics();
+    $user->updateTotalPosts();
+    $user->updateTotalComments();        
     
     print "runtime: " . runtime() . " ms\n";
     

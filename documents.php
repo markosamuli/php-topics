@@ -74,6 +74,42 @@ class User extends Shanty_Mongo_Document
         $this->modified = new MongoDate();
     }
     
+    /**
+     * @return array
+     */ 
+    public function getReferenceQuery()
+    {
+        $ref = MongoDBRef::create(self::getCollectionName(), $this->getId());
+        return array('user' => $ref);
+    }
+    
+    public function updateTotalTopics()
+    {
+        $total = Topic::all($this->getReferenceQuery())->count();
+        self::update(
+            array(array('_id' => $this->getId()), '$atomic' => true), 
+            array('$set' => array('totalTopics' => $total))
+        );
+    }
+    
+    public function updateTotalPosts()
+    {
+        $total = Post::all($this->getReferenceQuery())->count();
+        self::update(
+            array(array('_id' => $this->getId()), '$atomic' => true), 
+            array('$set' => array('totalPosts' => $total))
+        );
+    }
+    
+    public function updateTotalComments()
+    {
+        $total = Comment::all($this->getReferenceQuery())->count();
+        self::update(
+            array(array('_id' => $this->getId()), '$atomic' => true), 
+            array('$set' => array('totalComments' => $total))
+        );
+    }
+    
 }
 
 class Topic extends Shanty_Mongo_Document
