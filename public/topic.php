@@ -89,11 +89,12 @@ if ($topic === null) {
                 <a href="post.php?id=<?php echo $post->getId(); ?>"><img src="image.php?id=<?php echo $imageId; ?>&size=tiny" /></a>
             </div>
             <?php } ?>
-            <p><?php echo $post->message; ?></p>
+            <p><?php echo $post->getMessage(); ?></p>
             <div class="footer">
             Posted 
             <span class="created"><?php echo date("j.n.Y H:i:s", $post->created->sec); ?></span>
             by <span class="author"><?php echo $post->user->name; ?></span>
+            <a href="post.php?id=<?php echo $post->getId(); ?>">#</a>
             </div>
             </div>
             <div class="comments">

@@ -26,7 +26,7 @@ if (!empty($_POST['comment'])) {
   $comment = new Comment();
   $comment->user = $user;
   $comment->post = $post;
-  $comment->message = $_POST['comment'];
+  $comment->message = strip_tags($_POST['comment']);
   if ($comment->save()) {
       $postId = $post->getId();
       if (isset($_POST['return']) && $_POST['return'] == 'topic') {

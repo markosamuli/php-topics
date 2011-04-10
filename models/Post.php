@@ -51,6 +51,16 @@ class Post extends StandardDocument
         $this->deleteComments();
     }
     
+    public function getMessage()
+    {
+        $message = $this->message; 
+        if (preg_match('/(http:\/\/[^\(\)\[\]\s"\']+)/', $message, $m)) {
+           $url = $m[1];
+           $message = str_replace($url, "<a href=\"$url\">$url</a>", $message);
+        }
+        return $message;
+    }
+    
     public function getImageId()
     {
         if ($this->image === null) {

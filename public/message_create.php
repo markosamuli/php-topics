@@ -91,7 +91,7 @@ if (!empty($_POST['message'])) {
     }
         
     $post = new Post();
-    $post->message = $_POST['message'];
+    $post->message = strip_tags($_POST['message']);
     $post->topic = $topic;
     $post->user = $user;
     if (isset($image)) {

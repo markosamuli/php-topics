@@ -28,7 +28,7 @@ if ($restful) {
 
 if (!empty($_POST['title'])) {
   $topic = new Topic();
-  $topic->title = $_POST['title'];
+  $topic->title = strip_tags($_POST['title']);
   $topic->user = $user;
   if ($topic->save()) {
       $topicId = $topic->getId();

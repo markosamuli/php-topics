@@ -38,8 +38,13 @@ if ($post === null) {
             <img src="image.php?id=<?php echo $imageId; ?>&size=thumb" />
         </div>
         <?php } ?>
-       <h2><?php echo $post->message; ?></h2>
-       <div class="created"><?php echo date("j.n.Y H:i:s", $post->created->sec); ?></div>
+       <h2><?php 
+       echo $post->getMessage();
+       ?></h2>
+       <div class="info">
+       Posted <span class="created"><?php echo date("j.n.Y H:i:s", $post->created->sec); ?></span>
+       by <span class="author"><?php echo $post->user->name; ?></span>
+       </div>
     </div>
     <div class="comments">
     <?php 
