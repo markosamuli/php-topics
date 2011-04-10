@@ -50,6 +50,7 @@ if ($limit > 0) {
     $topics->limit($limit);
 }
 
+$lastModified = null;
 $i = 0;
 ob_start();
 foreach ($topics as $topic) {
