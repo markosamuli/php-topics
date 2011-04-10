@@ -90,7 +90,17 @@ body {
 .topic .posts .post p {
   margin:0;
 }
-
+.post .image {
+  float:left;
+  margin:0 5px 5px 0;
+}
+.header {
+  overflow:hidden;
+}
+.header .image {
+  float:right;
+  margin:0 6px 0 6px;
+}
 .message .footer,
 .topic .posts .post .footer {
   margin:3px 0 0 0;
@@ -110,9 +120,11 @@ body {
    margin:6px 0 0 0;
    padding:6px;
    background-color:#eeeeee;
+   overflow:hidden;
 }
 
 .message .footer {
+  clear:left;
   border-top:1px solid #ddd;
 }
 

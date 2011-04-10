@@ -12,6 +12,7 @@ class Post extends StandardDocument
         'created' => array('Required'),            
         'user' => array('Document:User', 'Required', 'AsReference'),
         'topic' => array('Document:Topic', 'Required', 'AsReference'),  
+        'image' => array('Document:Image', 'AsReference'),          
         'comments' => 'DocumentSet',
         'comments.$' => array('Document:Comment', 'AsReference'),  
         'totalComments' => array(),    
@@ -48,6 +49,18 @@ class Post extends StandardDocument
         }
         
         $this->deleteComments();
+    }
+    
+    public function getImageId()
+    {
+        if ($this->image === null) {
+            return null;
+        }
+        if ($imageId = $this->image->getId()) {
+            if ($this->image->fileExists()) {
+                return $imageId;
+            }
+        }
     }
     
     /**

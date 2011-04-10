@@ -14,11 +14,14 @@ function runtime($start = null)
 date_default_timezone_set('Europe/Helsinki');
 mb_internal_encoding("UTF-8");
 
-session_start();
+if (!defined('NO_SESSION_SUPPORT')) {
+    session_start();
+}
 
 define('ROOT_PATH', realpath(dirname(__FILE__)));
 define('LIBRARY_PATH', ROOT_PATH . "/library");
 define('TEMPLATE_PATH', ROOT_PATH . "/include");
+define('UPLOAD_PATH', ROOT_PATH . "/uploads");
 
 $paths = array();
 // $paths[] = '/srv/lib/ZendFramework-1.11.5-minimal/library';
@@ -33,9 +36,11 @@ $autoloader->registerNamespace('Shanty_Mongo_');
 
 require_once "documents.php";
 
-if (isset($_SESSION['user'])) {
-    if (!($_SESSION['user'] instanceof MongoID)) {
-        $_SESSION['user'] = null;
+if (!defined('NO_SESSION_SUPPORT')) {
+    if (isset($_SESSION['user'])) {
+        if (!($_SESSION['user'] instanceof MongoID)) {
+            $_SESSION['user'] = null;
+        }
     }
 }
 

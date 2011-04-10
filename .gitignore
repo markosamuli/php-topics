@@ -1,2 +1,5 @@
 library/Zend
 external/Shanty-Mongo
+uploads/original
+uploads/thumb
+uploads/tiny

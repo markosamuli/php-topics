@@ -84,6 +84,11 @@ if ($topic === null) {
         <?php foreach ($posts as $post) { ?>
           <div class="message" id="<?php echo $post->getId(); ?>">
             <div class="post">
+            <?php if ($imageId = $post->getImageId()) { ?>
+            <div class="image">
+                <a href="post.php?id=<?php echo $post->getId(); ?>"><img src="image.php?id=<?php echo $imageId; ?>&size=tiny" /></a>
+            </div>
+            <?php } ?>
             <p><?php echo $post->message; ?></p>
             <div class="footer">
             Posted 
@@ -98,7 +103,7 @@ if ($topic === null) {
             if ($comments) { ?>
                <?php if ($post->totalComments > $limit) { ?>
                   <div class="more">
-                  <a href="comments.php?id=<?php echo $post->getId(); ?>">Show all comments
+                  <a href="post.php?id=<?php echo $post->getId(); ?>">Show all comments
                   (<?php echo $post->totalComments; ?>)
                   </a> 
                   </div>

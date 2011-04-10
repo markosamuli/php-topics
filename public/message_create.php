@@ -41,11 +41,62 @@ if (!empty($_POST['message'])) {
       $topicQuery = array('_id' => $topicId);
       $topic = $topics->findone($topicQuery);
       */
+      
+    
+     
+    if (isset($_FILES['image'])) {
+        
+        $userPath = UPLOAD_PATH . "/" . $user->getId();
+        if (!file_exists($userPath)) {
+            mkdir($userPath, 0777, true);
+        }
+        
+        $tmpFile = $_FILES['image']['tmp_name'];
+        $originalFilename = $_FILES['image']['name'];
+        $uploadFile = $userPath . "/" . time() . "_" . $originalFilename;
+        
+        if (file_exists($uploadFile)) {
+            throw new Exception("File $uploadFile already exists");
+        }
+        
+        if (move_uploaded_file($tmpFile, $uploadFile)) {
+            
+            $info = pathinfo($uploadFile);
+            $filename = uniqid() . "." . $info['extension'];
+            
+            Image::ensureIndex(array('filename' => 1), array('unique' => 1));
+            
+            $image = new Image();
+            $image->filename = $filename;
+            $image->originalFilename = $originalFilename;
+            $image->user = $user;
+            
+            $imagePath = $image->getPath();
+            if (file_exists($imagePath)) {
+                throw new Exception("File $imagePath already exists");
+            }
+            
+            $image->createDirectory("original");
+            if (rename($uploadFile, $imagePath)) {
+                chmod(0666, $imagePath);
+                $image->save();
+            } else {
+                throw new Exception("Failed to store file $imagePath");
+            }
+            
+        } else {
+            throw new Exception("File $uploadFile could not be stored");
+        }
+        
+    }
         
     $post = new Post();
     $post->message = $_POST['message'];
     $post->topic = $topic;
     $post->user = $user;
+    if (isset($image)) {
+        $post->image = $image;
+    }
     if ($post->save()) {
         /*
         $topic->posts->addDocument($post);
