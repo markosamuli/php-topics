@@ -2,10 +2,13 @@
 
 $startTime = microtime(true);
 
-function runtime()
+function runtime($start = null)
 {
     global $startTime;
-    return ceil((microtime(true) - $startTime) * 1000);
+    if ($start === null) {
+        $start = $startTime;
+    }
+    return ceil((microtime(true) - $start) * 1000);
 }
 
 date_default_timezone_set('Europe/Helsinki');
