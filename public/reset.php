@@ -32,8 +32,8 @@ if (!empty($user)) {
     $user->totalComments = $total;
     $user->save();
     if ($total > 0) {
-        echo "Total comments: $total";
-        $comments = Comment::all($query)->limit(100);
+        echo "Total comments: $total\n";
+        $comments = Comment::all($query)->limit(1000);
         foreach ($comments as $comment) {
             $start = microtime(true);
             $comment->delete();
@@ -45,8 +45,8 @@ if (!empty($user)) {
     $user->totalPosts = $total;
     $user->save();
     if ($total > 0) {
-        echo "Total posts: $total";
-        $posts = Post::all($query)->limit(100);
+        echo "Total posts: $total\n";
+        $posts = Post::all($query)->limit(1000);
         foreach ($posts as $post) {
             $start = microtime(true);
             $post->delete();
@@ -58,8 +58,8 @@ if (!empty($user)) {
     $user->totalTopics = $total;
     $user->save();
     if ($total > 0) {
-        echo "Total topics: $total";
-        $topics = Topic::all($query)->limit(100);
+        echo "Total topics: $total\n";
+        $topics = Topic::all($query)->limit(1000);
         foreach ($topics as $topic) {
             $start = microtime(true);
             $topic->delete();
