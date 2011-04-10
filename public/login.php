@@ -46,6 +46,9 @@ if (empty($_POST)) {
     <div class="login">
     <?php include("login_form.php"); ?>
     </div>
+    <div class="footer">
+    you can create a new account too, just type in something above and try to login
+    </div>
 </body>
 </html>
         

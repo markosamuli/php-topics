@@ -56,7 +56,11 @@ if ($post === null) {
     include("comment_form.php"); 
     ?>
     </div>
-<div class="footer"><a href="xml.php?post=<?php echo $post->getId(); ?>">XML</a> | <?php echo runtime(); ?> ms</div>      
+<div class="footer">
+<a href="xml.php?post=<?php echo $post->getId(); ?>">XML</a> 
+| <?php echo runtime(); ?> ms
+| you made it down here!
+</div>      
 <?php include("mongodb_profiler.php"); ?>
 </body>
 </html>
