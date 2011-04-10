@@ -115,6 +115,7 @@ body {
   float:right;
   margin:0 6px 0 6px;
 }
+.comment .footer,
 .message .footer,
 .topic .posts .post .footer {
   margin:3px 0 0 0;
@@ -254,8 +255,7 @@ body {
   }
   .comment .modified,
   .comment .created {
-    font-size:0.9em;
-    color:#777;
+    color:black;
   }
   .topic .info {
     margin-top:6px;

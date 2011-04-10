@@ -52,8 +52,11 @@ if ($post === null) {
     if ($comments) { ?>
        <?php foreach ($comments as $comment) { ?>
           <div class="comment">
-            <p><?php echo $comment->message; ?></p>
-               <div class="created"><?php echo date("j.n.Y H:i:s", $comment->created->sec); ?></div>
+            <p><?php echo $comment->getMessage(); ?></p>
+            <div class="footer">
+               Posted <span class="created"><?php echo date("j.n.Y H:i:s", $comment->created->sec); ?></span>
+               by <span class="author"><?php echo $comment->user->name; ?></span>
+            </div>
           </div>
        <?php } ?>
     <?php } ?>
