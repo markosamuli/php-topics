@@ -3,9 +3,27 @@
 header("Content-Type:text/plain");
 require "../init.php";
 
-if (!empty($_SESSION['user'])) {
-    
+if (isset($_GET['rest']) || isset($_POST['rest'])) {
+    $restful = true;
+} else {
+    $restful = false;
+}
+
+if ($restful) {
+    if (isset($_POST['user'])) {
+        $user = User::find($_POST['user']);
+    } else {
+        $user = null;
+    }
+    if ($user === null) {
+        header("HTTP/1.1 403 Forbidden");
+        exit;
+    }
+} elseif (!empty($_SESSION['user'])) {
     $user = User::find($_SESSION['user']);
+}
+
+if (!empty($user)) {
     
     $userRef = MongoDBRef::create(User::getCollectionName(), $user->getId());
     $query = array('user' => $userRef);

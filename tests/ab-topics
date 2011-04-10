@@ -1,2 +1,13 @@
 #!/bin/bash
-ab -n 10000 -c 100 -k -T 'application/x-www-form-urlencoded' -p topic.txt http://sandbox.markosamuli.com/topics/topic_create.php?rest=1
+
+# create topics
+URL="http://sandbox.markosamuli.com/topics/topic_create.php?rest=1"
+echo ""
+echo "=== $URL ==="
+ab -n 1000 -c 100 -k -T 'application/x-www-form-urlencoded' -p topic.txt $URL
+
+# delete topics
+URL="http://sandbox.markosamuli.com/topics/reset.php?rest=1"
+echo ""
+echo "=== $URL ==="
+ab -n 10 -c 10 -k -T 'application/x-www-form-urlencoded' -p reset.txt $URL
