@@ -28,11 +28,14 @@ if (!empty($user)) {
     $userRef = MongoDBRef::create(User::getCollectionName(), $user->getId());
     $query = array('user' => $userRef);
     
+    $start = microtime(true);
     $total = Comment::all($query)->count();
-    $user->totalComments = $total;
-    $user->save();
+    User::update(
+        array(array('_id' => $user->getId()), '$atomic' => true), 
+        array('$set' => array('totalComments' => $total))
+    );
+    echo "Total comments: $total (" . runtime($start) .  "ms)\n";  
     if ($total > 0) {
-        echo "Total comments: $total\n";
         $comments = Comment::all($query)->limit(1000);
         foreach ($comments as $comment) {
             $start = microtime(true);
@@ -41,11 +44,14 @@ if (!empty($user)) {
         }
     }   
     
+    $start = microtime(true);
     $total = Post::all($query)->count();
-    $user->totalPosts = $total;
-    $user->save();
+    User::update(
+        array(array('_id' => $user->getId()), '$atomic' => true), 
+        array('$set' => array('totalPosts' => $total))
+    );
+    echo "Total posts: $total (" . runtime($start) .  "ms)\n";  
     if ($total > 0) {
-        echo "Total posts: $total\n";
         $posts = Post::all($query)->limit(1000);
         foreach ($posts as $post) {
             $start = microtime(true);
@@ -54,11 +60,14 @@ if (!empty($user)) {
         }
     }
     
+    $start = microtime(true);
     $total = Topic::all($query)->count();
-    $user->totalTopics = $total;
-    $user->save();
+    User::update(
+        array(array('_id' => $user->getId()), '$atomic' => true), 
+        array('$set' => array('totalTopics' => $total))
+    );
+    echo "Total topics: $total (" . runtime($start) .  "ms)\n";  
     if ($total > 0) {
-        echo "Total topics: $total\n";
         $topics = Topic::all($query)->limit(1000);
         foreach ($topics as $topic) {
             $start = microtime(true);
