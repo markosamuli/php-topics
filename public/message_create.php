@@ -44,7 +44,7 @@ if (!empty($_POST['message'])) {
       
     
      
-    if (isset($_FILES['image'])) {
+    if (isset($_FILES['image']) && !empty($_FILES['image']['tmp_name'])) {
         
         $userPath = UPLOAD_PATH . "/" . $user->getId();
         if (!file_exists($userPath)) {
@@ -78,7 +78,7 @@ if (!empty($_POST['message'])) {
             
             $image->createDirectory("original");
             if (rename($uploadFile, $imagePath)) {
-                chmod(0666, $imagePath);
+                chmod($imagePath, 0666);
                 $image->save();
             } else {
                 throw new Exception("Failed to store file $imagePath");

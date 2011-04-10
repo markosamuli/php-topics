@@ -79,6 +79,7 @@ if ($image->cacheFileExists($size)) {
     $cacheFile = $image->getPath($size);
     $image->createDirectory($size);
     $img->writeImage($cacheFile);
+    chmod($cacheFile, 0666);
     
     $etag = $image->getEtag($size);
     $lastModified = time();
