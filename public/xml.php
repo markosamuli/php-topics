@@ -115,11 +115,11 @@ $sxe = new SimpleXMLElement($doc);
 
 $userXml = addUserXml($sxe, $user);
 $userTopicsXml = $userXml->addChild('topics');
-$userTopicsXml->addAttribute('total', $user->totalTopics);
+$userTopicsXml->addAttribute('total', $user->updateTotalTopics());
 $userPostsXml = $userXml->addChild('posts');
-$userPostsXml->addAttribute('total', $user->totalPosts);
+$userPostsXml->addAttribute('total', $user->updateTotalPosts());
 $userCommentsXml = $userXml->addChild('comments');
-$userCommentsXml->addAttribute('total', $user->totalComments);
+$userCommentsXml->addAttribute('total', $user->updateTotalComments());
 
 if (isset($_GET['post'])) {
     

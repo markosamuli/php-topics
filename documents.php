@@ -90,6 +90,7 @@ class User extends Shanty_Mongo_Document
             array(array('_id' => $this->getId()), '$atomic' => true), 
             array('$set' => array('totalTopics' => $total))
         );
+        return $total;
     }
     
     public function updateTotalPosts()
@@ -99,6 +100,7 @@ class User extends Shanty_Mongo_Document
             array(array('_id' => $this->getId()), '$atomic' => true), 
             array('$set' => array('totalPosts' => $total))
         );
+        return $total;
     }
     
     public function updateTotalComments()
@@ -108,6 +110,7 @@ class User extends Shanty_Mongo_Document
             array(array('_id' => $this->getId()), '$atomic' => true), 
             array('$set' => array('totalComments' => $total))
         );
+        return $total;
     }
     
 }
