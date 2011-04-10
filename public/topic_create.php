@@ -11,7 +11,7 @@ if (isset($_GET['rest']) || isset($_POST['rest'])) {
 
 if ($restful) {
     if (isset($_POST['user'])) {
-        $user = User::find($_POST['user']);
+        $user = User::one(array('secret' => $_POST['user']));
     } else {
         $user = null;
     }
