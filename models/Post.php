@@ -18,21 +18,7 @@ class Post extends Shanty_Mongo_Document
         'comments' => 'DocumentSet',
         'comments.$' => array('Document:Comment', 'AsReference'),  
         'totalComments' => array(),    
-    );   
-    
-    public function getCreatedDate()
-    {
-        if ($this->created) {
-            return new Zend_Date($this->created->sec);
-        }
-    }
-    
-    public function getModifiedDate()
-    {
-        if ($this->modified) {
-            return new Zend_Date($this->modified->sec);
-        }
-    }
+    );
     
     public function init()
     {
@@ -40,6 +26,26 @@ class Post extends Shanty_Mongo_Document
             $this->modified = $this->created;
         }
     } 
+    
+    /**
+     * @return Zend_Date|null
+     */
+    public function getCreatedDate()
+    {
+        if ($this->created) {
+            return new Zend_Date($this->created->sec);
+        }
+    }
+    
+    /**
+     * @return Zend_Date|null
+     */ 
+    public function getModifiedDate()
+    {
+        if ($this->modified) {
+            return new Zend_Date($this->modified->sec);
+        }
+    }
     
     public function preInsert()
     {
@@ -94,14 +100,23 @@ class Post extends Shanty_Mongo_Document
         return array('post' => $ref);
     }
     
+    /**
+     * @return integer
+     */ 
     public function deleteComments()
     {
+        $i = 0;
         $comments = $this->getComments();
         foreach ($comments as $comment) {
             $comment->delete();
+            $i++;
         }
+        return $i;
     }
     
+    /**
+     * @return MongoCursor
+     */ 
     public function getComments()
     {
         $comments = Comment::all($this->getReferenceQuery())
@@ -109,6 +124,10 @@ class Post extends Shanty_Mongo_Document
         return $comments;
     }
     
+    /**
+     * @return integer
+     * @throws Exception
+     */ 
     public function updateTotalComments()
     {
         $db = self::getMongoDb();
@@ -146,9 +165,12 @@ class Post extends Shanty_Mongo_Document
                 $comments = $row['value']['count'];
                 $this->totalComments = $comments;
                 $this->save();
-                return;
+                return $comments;
             }
         }
+        
+        throw new Exception("Failed to update total comments for the post");
+        
     }
     
 }

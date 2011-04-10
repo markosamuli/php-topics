@@ -16,17 +16,20 @@ class Comment extends Shanty_Mongo_Document
         'post' => array('Document:Post', 'Required', 'AsReference'),
     );
     
-    public function getCreatedDate()
-    {
-        if ($this->created) {
-            return new Zend_Date($this->created->sec);
-        }
-    }
-    
     public function init()
     {
         if ($this->created && $this->modified === null) {
             $this->modified = $this->created;
+        }
+    }
+    
+    /**
+     * @return Zend_Date|null
+     */
+    public function getCreatedDate()
+    {
+        if ($this->created) {
+            return new Zend_Date($this->created->sec);
         }
     }
     

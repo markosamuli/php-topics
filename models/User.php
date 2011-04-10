@@ -54,6 +54,9 @@ class User extends Shanty_Mongo_Document
         return array('user' => $ref);
     }
     
+    /**
+     * @return integer
+     */
     public function updateTotalTopics()
     {
         $total = $this->getTopics()->count();
@@ -62,6 +65,9 @@ class User extends Shanty_Mongo_Document
         return $total;
     }
     
+    /**
+     * @return integer
+     */
     public function updateTotalPosts()
     {
         $total = $this->getPosts()->count();
@@ -70,6 +76,9 @@ class User extends Shanty_Mongo_Document
         return $total;
     }
     
+    /**
+     * @return integer
+     */
     public function updateTotalComments()
     {
         $total = $this->getComments()->count();
@@ -78,21 +87,34 @@ class User extends Shanty_Mongo_Document
         return $total;
     }
     
+    /**
+     * @return MongoCursor
+     */ 
     public function getTopics()
     {
         return Topic::all($this->getReferenceQuery());
     }
     
+    /**
+     * @return MongoCursor
+     */
     public function getPosts()
     {
         return Post::all($this->getReferenceQuery());
     }
     
+    /**
+     * @return MongoCursor
+     */
     public function getComments()
     {
         return Comment::all($this->getReferenceQuery());
     }
     
+    /**
+     * @param integer $limit 
+     * @return integer
+     */ 
     public function deleteTopics($limit = 100)
     {
         $i = 0;
@@ -104,6 +126,10 @@ class User extends Shanty_Mongo_Document
         return $i;
     }
     
+    /**
+     * @param integer $limit 
+     * @return integer
+     */
     public function deletePosts($limit = 100)
     {
         $i = 0;
@@ -115,6 +141,10 @@ class User extends Shanty_Mongo_Document
         return $i;
     }
     
+    /**
+     * @param integer $limit 
+     * @return integer
+     */
     public function deleteComments($limit = 100)
     {
         $i = 0;

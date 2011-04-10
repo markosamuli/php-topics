@@ -21,6 +21,16 @@ class Topic extends Shanty_Mongo_Document
         'totalPosts' => array(),
     );
     
+    public function init()
+    {
+        if ($this->created && $this->modified === null) {
+            $this->modified = $this->created;
+        }
+    }
+    
+    /**
+     * @return Zend_Date|null
+     */
     public function getCreatedDate()
     {
         if ($this->created) {
@@ -28,17 +38,13 @@ class Topic extends Shanty_Mongo_Document
         }
     }
     
+    /**
+     * @return Zend_Date|null
+     */ 
     public function getModifiedDate()
     {
         if ($this->modified) {
             return new Zend_Date($this->modified->sec);
-        }
-    }
-    
-    public function init()
-    {
-        if ($this->created && $this->modified === null) {
-            $this->modified = $this->created;
         }
     }
     
@@ -89,6 +95,9 @@ class Topic extends Shanty_Mongo_Document
         return array('topic' => $ref);
     }
  
+    /**
+     * @return MongoCursor
+     */
     public function getPosts()
     {
         $posts = Post::all($this->getReferenceQuery())
