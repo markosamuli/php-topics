@@ -104,12 +104,38 @@ class Topic extends Shanty_Mongo_Document
         $this->users->addDocument($this->user);
         $this->users->save();
     }
+    
+    public function postDelete()
+    {
+        $this->deletePosts();
+    }
+    
+    public function deletePosts()
+    {
+        if ($this->user) {
+            $this->user->inc('totalPosts', -1);     
+            $this->user->save();
+        }
+        
+        $posts = $this->getPosts();
+        foreach ($posts as $post) {
+            $post->delete();
+        }
+    }
+    
+    /**
+     * @return array
+     */ 
+    public function getReferenceQuery()
+    {
+        $ref = MongoDBRef::create(self::getCollectionName(), $this->getId());
+        return array('topic' => $ref);
+    }
  
     public function getPosts()
     {
-        $ref = MongoDBRef::create(self::getCollectionName(), $this->getId());
-        $query = array('topic' => $ref);
-        $posts = Post::all($query)->sort(array('created' => -1));
+        $posts = Post::all($this->getReferenceQuery())
+            ->sort(array('created' => -1));
         return $posts;
     }
     
@@ -173,15 +199,50 @@ class Post extends Shanty_Mongo_Document
         $this->topic->save();
         
         $this->user->inc('totalPosts', 1);   
-        $this->user->save();     
-     
+        $this->user->save();
+    }
+    
+    public function preDelete()
+    {
+        // $this->deleteComments();
+    }
+    
+    public function postDelete()
+    {
+        if ($this->topic) {
+            $this->topic->inc('totalPosts', -1);
+            $this->topic->save();
+        }
+        
+        if ($this->user) {
+            $this->user->inc('totalPosts', -1);     
+            $this->user->save();
+        }
+        
+        $this->deleteComments();
+    }
+    
+    /**
+     * @return array
+     */ 
+    public function getReferenceQuery()
+    {
+        $ref = MongoDBRef::create(self::getCollectionName(), $this->getId());
+        return array('post' => $ref);
+    }
+    
+    public function deleteComments()
+    {
+        $comments = $this->getComments();
+        foreach ($comments as $comment) {
+            $comment->delete();
+        }
     }
     
     public function getComments()
     {
-        $ref = MongoDBRef::create(self::getCollectionName(), $this->getId());
-        $query = array('post' => $ref);
-        $comments = Comment::all($query)->sort(array('created' => 1));
+        $comments = Comment::all($this->getReferenceQuery())
+            ->sort(array('created' => 1));
         return $comments;
     }
     
@@ -264,6 +325,18 @@ class Comment extends Shanty_Mongo_Document
     public function preUpdate() 
     {
         $this->modified = new MongoDate();
+    }
+    
+    public function postDelete()
+    {
+        if ($this->post) {
+            $this->post->inc('totalComments', -1);
+            $this->post->save();
+        }
+        if ($this->user) {
+            $this->user->inc('totalComments', -1);     
+            $this->user->save();
+        }
     }
     
     public function postInsert()
