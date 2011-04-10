@@ -46,7 +46,7 @@ if ($topic === null) {
   <?php include("header.php"); ?>
     <div class="header">
     <h1><?php echo $topic->title; ?></h1>
-    <a href="topics.php">&laquo; List all topics</a>
+    <a href="topics.php">&laquo; Display all topics</a>
     </div>
     <div class="messages">
     

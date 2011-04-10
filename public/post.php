@@ -29,12 +29,16 @@ if ($post === null) {
 <body>
     <?php include("header.php"); ?>
     <div class="header">
-           <?php if ($imageId = $post->getImageId()) { ?>
+    <h2><?php echo $post->topic->title; ?></h2>
+    <a href="topic.php?id=<?php echo $post->topic->getId(); ?>">&laquo; Return back to the topic</a>
+    </div>
+    <div class="header">
+        <?php if ($imageId = $post->getImageId()) { ?>
         <div class="image">
             <img src="image.php?id=<?php echo $imageId; ?>&size=thumb" />
         </div>
         <?php } ?>
-       <h2><a href="topic.php?id=<?php echo $post->topic->getId(); ?>"><?php echo $post->message; ?></a></h2>
+       <h2><?php echo $post->message; ?></h2>
        <div class="created"><?php echo date("j.n.Y H:i:s", $post->created->sec); ?></div>
     </div>
     <div class="comments">
