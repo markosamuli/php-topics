@@ -1,2 +1,2 @@
 #!/bin/bash
-ab -n 10 -c 10 -k -T 'application/x-www-form-urlencoded' -p topic.txt http://sandbox.markosamuli.com/topics/topic_create.php?rest=1
+ab -n 10000 -c 100 -k -T 'application/x-www-form-urlencoded' -p topic.txt http://sandbox.markosamuli.com/topics/topic_create.php?rest=1

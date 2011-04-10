@@ -151,9 +151,15 @@ if (isset($_GET['post'])) {
 
 } else {
     
+    if (isset($_GET['limit'])) {
+        $limit = min($_GET['limit'], 1000);
+    } else {
+        $limit = 10;
+    }
+    
     $topics = Topic::all()
         ->sort(array("modified" => -1))
-        ->limit(10);
+        ->limit($limit);
     $topicsXml = addTopicsXml($sxe, $topics);
     
 }
