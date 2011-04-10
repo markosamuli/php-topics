@@ -17,7 +17,22 @@ class User extends Shanty_Mongo_Document
         'totalTopics' => array(),    
         'created' => array('Validator:MongoDate'),
         'modified' => array('Validator:MongoDate'),
+        'secret' => array(),
     );
+    
+    public function getCreatedDate()
+    {
+        if ($this->created) {
+            return new Zend_Date($this->created->sec);
+        }
+    }
+    
+    public function getModifiedDate()
+    {
+        if ($this->modified) {
+            return new Zend_Date($this->modified->sec);
+        }
+    }
     
     public function preInsert()
     {
@@ -48,6 +63,20 @@ class Topic extends Shanty_Mongo_Document
         'posts.$' => array('Document:Post', 'AsReference'),
         'totalPosts' => array(),
     );
+    
+    public function getCreatedDate()
+    {
+        if ($this->created) {
+            return new Zend_Date($this->created->sec);
+        }
+    }
+    
+    public function getModifiedDate()
+    {
+        if ($this->modified) {
+            return new Zend_Date($this->modified->sec);
+        }
+    }
     
     public function init()
     {
@@ -101,6 +130,20 @@ class Post extends Shanty_Mongo_Document
         'comments.$' => array('Document:Comment', 'AsReference'),  
         'totalComments' => array(),    
     );   
+    
+    public function getCreatedDate()
+    {
+        if ($this->created) {
+            return new Zend_Date($this->created->sec);
+        }
+    }
+    
+    public function getModifiedDate()
+    {
+        if ($this->modified) {
+            return new Zend_Date($this->modified->sec);
+        }
+    }
     
     public function init()
     {
@@ -197,6 +240,13 @@ class Comment extends Shanty_Mongo_Document
         'user' => array('Document:User', 'Required', 'AsReference'),
         'post' => array('Document:Post', 'Required', 'AsReference'),
     );
+    
+    public function getCreatedDate()
+    {
+        if ($this->created) {
+            return new Zend_Date($this->created->sec);
+        }
+    }
     
     public function init()
     {

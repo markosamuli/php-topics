@@ -47,5 +47,6 @@ if ($post === null) {
     include("comment_form.php"); 
     ?>
     </div>
+<div class="footer"><a href="xml.php?post=<?php echo $post->getId(); ?>">XML</a></div>      
 </body>
 </html>

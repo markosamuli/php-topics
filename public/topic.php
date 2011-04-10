@@ -117,8 +117,8 @@ if ($topic === null) {
             </div>
           </div>  
         <?php } ?>
-      <?php } ?>
-      
+      <?php } ?>      
     </div>
+<div class="footer"><a href="xml.php?topic=<?php echo $topic->getId(); ?>">XML</a></div>     
 </body>
 </html>

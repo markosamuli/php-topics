@@ -191,9 +191,7 @@ $(document).ready(function () {
     echo $topicsHtml;
     ?>
     </div>
-    <?php if (isset($lastModified)) { ?>
     <?php
-    }
     /*
     $last = $skip + $i;
     if ($last < $totalTopics) {
@@ -225,5 +223,6 @@ $(document).ready(function () {
     */   
     ?>
   </div>
+<div class="footer"><a href="xml.php">XML</a></div> 
 </body>
 </html>
