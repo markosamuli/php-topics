@@ -5,7 +5,8 @@
   <input type="hidden" name="return" value="topic" />
   <?php } ?>
   <div>
-    <textarea name="comment"></textarea>
+    <label for="comment-post-<?php echo $post->getId(); ?>">My two cents...</label>
+    <textarea id="comment-post-<?php echo $post->getId(); ?>" name="comment"></textarea>
   </div>
   <div>
     <button type="submit">Blurb!</button>
