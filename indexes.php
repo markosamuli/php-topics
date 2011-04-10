@@ -36,7 +36,6 @@ try {
     echo "MongoException: " . $e->getMessage() . "\n";
 }
 
-/*
 try {
     echo "Collection: " . Comment::getCollectionName() . "\n";  
     Comment::ensureIndex(array('created'), array('safe' => 1));
@@ -44,4 +43,3 @@ try {
 } catch (MongoException  $e) {
     echo "MongoException: " . $e->getMessage() . "\n";
 }
-*/
