@@ -283,3 +283,16 @@ body > div.footer {
 body > div.footer a {
   color:black;
 }
+#profiler {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background:white;
+  padding:3px 6px;
+}
+#profiler table {
+  font-size:10px;
+}
+#profiler table thead tr th {
+  padding:1px 2px;
+}

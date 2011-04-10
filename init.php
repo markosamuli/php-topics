@@ -36,3 +36,28 @@ if (isset($_SESSION['user'])) {
     }
 }
 
+function setProfilingLevel($level)
+{
+    // User::getMongoDb()->setProfilingLevel($level);
+    // Topic::getMongoDb()->setProfilingLevel($level);
+    // Post::getMongoDb()->setProfilingLevel($level);    
+    // Comment::getMongoDb()->setProfilingLevel($level);    
+    $result = MongoProfiler::setProfilingLevel($level);
+    return $result;
+}
+
+if (isset($_GET['profile'])) {
+    if ($_GET['profile'] == 'slow') {
+        $result = setProfilingLevel(1);
+        $_SESSION['profile'] = $_GET['profile'];
+        $_SESSION['profile_debug'] = $result;
+    } elseif ($_GET['profile'] == 'all') {
+        $result = setProfilingLevel(2);
+        $_SESSION['profile'] = $_GET['profile'];
+        $_SESSION['profile_debug'] = $result;
+    } else {
+        $result = setProfilingLevel(0);
+        $_SESSION['profile'] = false;
+        $_SESSION['profile_debug'] = $result;
+    }
+}

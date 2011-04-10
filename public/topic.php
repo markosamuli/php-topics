@@ -120,5 +120,6 @@ if ($topic === null) {
       <?php } ?>      
     </div>
 <div class="footer"><a href="xml.php?topic=<?php echo $topic->getId(); ?>">XML</a> | <?php echo runtime(); ?> ms</div>     
+<?php include("mongodb_profiler.php"); ?>
 </body>
 </html>
