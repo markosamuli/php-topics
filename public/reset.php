@@ -29,42 +29,42 @@ if (!empty($user)) {
     $query = array('user' => $userRef);
     
     $total = Comment::all($query)->count();
+    $user->totalComments = $total;
+    $user->save();
     if ($total > 0) {
+        echo "Total comments: $total";
         $comments = Comment::all($query)->limit(100);
         foreach ($comments as $comment) {
             $start = microtime(true);
             $comment->delete();
             echo 'comment:' . $comment->getId() . " (" . runtime($start) .  "ms)\n";               
         }
-    } else {
-        $user->totalComments = 0;
-        $user->save();
-    }    
+    }   
     
     $total = Post::all($query)->count();
+    $user->totalPosts = $total;
+    $user->save();
     if ($total > 0) {
+        echo "Total posts: $total";
         $posts = Post::all($query)->limit(100);
         foreach ($posts as $post) {
             $start = microtime(true);
             $post->delete();
             echo 'post:' . $post->getId() . " (" . runtime($start) .  "ms)\n";    
         }
-    } else {
-        $user->totalPosts = 0;
-        $user->save();
     }
     
     $total = Topic::all($query)->count();
+    $user->totalTopics = $total;
+    $user->save();
     if ($total > 0) {
+        echo "Total topics: $total";
         $topics = Topic::all($query)->limit(100);
         foreach ($topics as $topic) {
             $start = microtime(true);
             $topic->delete();
             echo 'topic:' . $topic->getId() . " (" . runtime($start) .  "ms)\n";    
         }
-    } else {
-        $user->totalTopics = 0;
-        $user->save();
     }
     
     print "runtime: " . runtime() . " ms\n";
