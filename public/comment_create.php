@@ -34,7 +34,7 @@ if (!empty($_POST['comment'])) {
           header("Location:topic.php?id={$topicId}#{$postId}");
           exit;
       } else {
-          header("Location:comments.php?id={$postId}");
+          header("Location:post.php?id={$postId}");
           exit;
       }
   } 

@@ -1,5 +1,8 @@
 <?php
 
+date_default_timezone_set('Europe/Helsinki');
+mb_internal_encoding("UTF-8");
+
 session_start();
 
 define('ROOT_PATH', realpath(dirname(__FILE__)));
