@@ -76,7 +76,7 @@ body {
 .comments {
   padding:6px 0;
 }
-.topic .posts {
+.topic .posts .post {
    -webkit-border-radius: 6px;
    -moz-border-radius: 6px;
    border-radius: 6px;
@@ -89,6 +89,9 @@ body {
 }
 .topic .posts .post p {
   margin:0;
+}
+.topic .posts .post .footer {
+  clear:left;
 }
 .post .image {
   float:left;

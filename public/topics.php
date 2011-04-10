@@ -75,14 +75,19 @@ foreach ($topics as $topic) {
         if ($topic->totalPosts > 0) { ?>
             <div class="posts">
                 <?php
-                $posts = $topic->getPosts()->limit(1);
+                $posts = $topic->getPosts()->limit(3);
                 foreach ($posts as $post) { ?>
                     <div class="post">
-                    <p><?php echo $post->message; ?></p>
-                    <div class="footer">
-                        Posted <span class="created"><?php echo date('j.n.Y H:i:s', $post->created->sec); ?></span> 
-                        by <span class="author"><?php echo $post->user->name; ?></span>
-                    </div>
+                        <?php if ($imageId = $post->getImageId()) { ?>
+                        <div class="image">
+                            <a href="post.php?id=<?php echo $post->getId(); ?>"><img src="image.php?id=<?php echo $imageId; ?>&size=tiny" /></a>
+                        </div>
+                        <?php } ?>
+                        <p><?php echo $post->message; ?></p>
+                        <div class="footer">
+                            Posted <span class="created"><?php echo date('j.n.Y H:i:s', $post->created->sec); ?></span> 
+                            by <span class="author"><?php echo $post->user->name; ?></span>
+                        </div>
                     </div>
                 <?php } ?>
             </div>
