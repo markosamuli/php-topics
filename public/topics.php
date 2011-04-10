@@ -224,6 +224,6 @@ $(document).ready(function () {
     */   
     ?>
   </div>
-<div class="footer"><a href="xml.php">XML</a></div> 
+<div class="footer"><a href="xml.php">XML</a> | <?php echo runtime(); ?> ms</div> 
 </body>
 </html>

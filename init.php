@@ -1,5 +1,13 @@
 <?php
 
+$startTime = microtime(true);
+
+function runtime()
+{
+    global $startTime;
+    return ceil((microtime(true) - $startTime) * 1000);
+}
+
 date_default_timezone_set('Europe/Helsinki');
 mb_internal_encoding("UTF-8");
 

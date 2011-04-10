@@ -163,5 +163,6 @@ if (isset($_GET['post'])) {
     $topicsXml = addTopicsXml($sxe, $topics);
     
 }
-    
+
+$sxe->addChild('runtime', runtime() . " ms");
 echo $sxe->asXML();

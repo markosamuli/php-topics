@@ -119,6 +119,6 @@ if ($topic === null) {
         <?php } ?>
       <?php } ?>      
     </div>
-<div class="footer"><a href="xml.php?topic=<?php echo $topic->getId(); ?>">XML</a></div>     
+<div class="footer"><a href="xml.php?topic=<?php echo $topic->getId(); ?>">XML</a> | <?php echo runtime(); ?> ms</div>     
 </body>
 </html>
